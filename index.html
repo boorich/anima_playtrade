@@ -1,607 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Curator Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anima PlayTrade - Digital Trading Assistant</title>
     <style>
-      body {
-        margin: 0;
-        padding: 20px;
-        font-family: system-ui, -apple-system, sans-serif;
-        background-color: #1a1a1a;
-        color: #e5e5e5;
-      }
-
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .hero-image {
-        width: 400px;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin: 0 auto 40px;
-        display: block;
-      }
-
-      .card {
-        background-color: #2a2a2a;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
-        border: 1px solid #3a3a3a;
-      }
-
-      .card-title {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #10b981;
-      }
-
-      .status-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        margin-bottom: 2rem;
-      }
-
-      .status-item {
-        background-color: #333;
-        padding: 1rem;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: #e5e5e5;
-      }
-
-      .status-item.clickable {
-        text-decoration: none;
-        transition: transform 0.2s;
-      }
-
-      .status-item.clickable:hover {
-        transform: scale(1.02);
-        background-color: #404040;
-      }
-
-      .status-icon {
-        width: 24px;
-        height: 24px;
-        background-color: #10b981;
-        border-radius: 50%;
-      }
-
-      .grid-2 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1rem;
-      }
-
-      .partner {
-        padding: 1rem;
-        background-color: #333;
-        border-radius: 6px;
-        margin-bottom: 0.5rem;
-      }
-
-      .partner.pending {
-        border: 1px solid #10b981;
-        background-color: #1a1a1a;
-      }
-
-      .timeline-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 1rem;
-        background-color: #333;
-        border-radius: 6px;
-        margin-bottom: 0.5rem;
-      }
-
-      .timeline-desc {
-        font-size: 0.875rem;
-        color: #9ca3af;
-        margin-top: 0.5rem;
-      }
-
-      .status-badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        white-space: nowrap;
-        margin-left: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 100px;
-      }
-
-      .status-inprogress {
-        background-color: #059669;
-        color: white;
-      }
-      .status-funded {
-        background-color: #2563eb;
-        color: white;
-      }
-      .status-planned {
-        background-color: #4b5563;
-        color: white;
-      }
-
-      .ask-item {
-        background-color: #333;
-        padding: 1.5rem;
-        border-radius: 6px;
-        margin-bottom: 0.5rem;
-        border-left: 4px solid #10b981;
-      }
-
-      .ask-title {
-        font-size: 1.1rem;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-        color: #10b981;
-      }
-
-      .benefit-item {
-        background-color: #333;
-        padding: 1.5rem;
-        border-radius: 6px;
-        margin-bottom: 0.5rem;
-        border-left: 4px solid #2563eb;
-      }
-
-      .benefit-title {
-        font-size: 1.1rem;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-        color: #2563eb;
-      }
-
-      .header {
-        text-align: center;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-      }
-
-      .project-title {
-        font-size: 3rem;
-        font-weight: 700;
-        color: #10b981;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin: 0;
-      }
-
-      .project-subtitle {
-        font-size: 1.2rem;
-        color: #9ca3af;
-        margin-top: 0.5rem;
-      }
-
-      /* Add footer styles */
-      .footer {
-        margin-top: 4rem;
-        padding: 2rem;
-        background-color: #2a2a2a;
-        border-radius: 8px;
-        border: 1px solid #3a3a3a;
-        text-align: center;
-      }
-
-      .contact-info {
-        display: inline-flex;
-        gap: 2rem;
-        color: #9ca3af;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        @media (max-width: 640px) {
-        .contact-info {
-            flex-direction: column; /* Stack items vertically on small screens */
-            gap: 1rem;            /* Reduce gap on small screens */
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .contact-item {
-            justify-content: center; /* Center items on small screens */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #1a1a1a;
+            color: #e5e5e5;
+            line-height: 1.5;
         }
-      }
 
-      .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
+        /* Layout and Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-      .contact-item a {
-        color: #10b981;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
 
-      .contact-item a:hover {
-        color: #059669;
-      }
+        .project-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0;
+        }
 
-      .carousel-container {
-        position: relative;
-        overflow: hidden;
-        padding: 1rem 0;
-      }
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
 
-      .carousel-items {
-        display: flex;
-        transition: transform 0.5s ease;
-      }
+        /* Hero Image */
+        .hero-image {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 0 auto 40px;
+            display: block;
+        }
 
-      .carousel-item {
-        min-width: 100%;
-        display: none;
-      }
+        /* Card Components */
+        .card {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #3a3a3a;
+        }
 
-      .carousel-item.active {
-        display: block;
-      }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #10b981;
+        }
 
-      .carousel-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
+        /* Status Grid */
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
 
-      .carousel-button {
-        background-color: #2a2a2a;
-        border: 1px solid #3a3a3a;
-        color: #10b981;
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
+        .status-item {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #e5e5e5;
+        }
 
-      .carousel-button:hover {
-        background-color: #3a3a3a;
-      }
+        .status-item.clickable {
+            text-decoration: none;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
 
-      .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
+        .status-item.clickable:hover {
+            transform: scale(1.02);
+            background-color: #404040;
+        }
 
-      .carousel-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background-color: #3a3a3a;
-        cursor: pointer;
-      }
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #10b981;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
 
-      .carousel-dot.active {
-        background-color: #10b981;
-      }
+        /* Grid Layout */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
 
-      .flex-container {
-        display: flex;
-        gap: 1rem;
-      }
+        /* Partner Cards */
+        .partner {
+            padding: 1rem;
+            background-color: #333;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
 
-      .flex-item {
-        flex: 1;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <h1 class="project-title">Anima PlayTrade</h1>
-        <div class="project-subtitle">AI-Powered NFT Trading Assistant</div>
-      </header>
-      <img
-        src="https://raw.githubusercontent.com/boorich/NFT_Inventory/refs/heads/main/public/images/trading_agent.webp"
-        alt="Digital Curator"
-        class="hero-image"
-      />
+        .partner.pending {
+            border: 1px solid #10b981;
+            background-color: #1a1a1a;
+        }
 
-      <div class="card">
-        <div class="card-title">Current Status</div>
-        <div class="status-grid">
-          <a
-            href="https://github.com/boorich/anima_playtrade/blob/main/UIM_Demo.mp4"
-            class="status-item clickable"
-            target="_blank"
-          >
-            <div class="status-icon"></div>
-            <span>Mobile App Prototype</span>
-          </a>
-          <div class="status-item">
-            <div class="status-icon"></div>
-            <span>€12,000 Grant Secured</span>
-          </div>
-          <div class="status-item">
-            <div class="status-icon"></div>
-            <span>NFT Tracking Live</span>
-          </div>
-          <div class="status-item">
-            <div class="status-icon"></div>
-            <span>WorldID Integrated</span>
-          </div>
-        </div>
-      </div>
+        .partner-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
 
-      <div class="card">
-        <div class="card-title">Broader Context</div>
-        <div
-          class="context-item"
-          style="
+        .partner-role {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem;
+            background-color: #333;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .status-inprogress { background-color: #059669; color: white; }
+        .status-funded { background-color: #2563eb; color: white; }
+        .status-planned { background-color: #4b5563; color: white; }
+
+        /* Context and Ask Items */
+        .context-item,
+        .ask-item {
             background-color: #333;
             padding: 1.5rem;
             border-radius: 6px;
             margin-bottom: 0.5rem;
+        }
+
+        .context-item {
             border-left: 4px solid #6366f1;
-          "
-        >
-          <div style="font-size: 1.2rem; margin-bottom: 1rem; color: #e5e5e5">
-            <strong>The Bigger Picture</strong>
-          </div>
-          <div style="color: #9ca3af; margin-bottom: 1rem">
-            Anima is a key component of UIM (Universal Item Manager), the
-            ultimate cross-game NFT command center. This isn't just about
-            managing NFTs - it's about creating the foundation for
-            <span style="color: #10b981">true cross-game asset ownership</span>.
-          </div>
-          <ul
-            style="
-              margin-top: 1rem;
-              color: #e5e5e5;
-              list-style-type: none;
-              padding: 0;
-            "
-          >
-            <li style="display: flex; align-items: center; margin-bottom: 1rem">
-              <div
-                style="
-                  width: 8px;
-                  height: 8px;
-                  background-color: #10b981;
-                  border-radius: 50%;
-                  margin-right: 1rem;
-                "
-              ></div>
-              Make cross-game assets accessible to mainstream gamers
-            </li>
-            <li style="display: flex; align-items: center; margin-bottom: 1rem">
-              <div
-                style="
-                  width: 8px;
-                  height: 8px;
-                  background-color: #10b981;
-                  border-radius: 50%;
-                  margin-right: 1rem;
-                "
-              ></div>
-              Prevent bot-driven manipulation of gaming economies
-            </li>
-            <li style="display: flex; align-items: center; margin-bottom: 1rem">
-              <div
-                style="
-                  width: 8px;
-                  height: 8px;
-                  background-color: #10b981;
-                  border-radius: 50%;
-                  margin-right: 1rem;
-                "
-              ></div>
-              Enable legitimate cross-game trading
-            </li>
-            <li style="display: flex; align-items: center">
-              <div
-                style="
-                  width: 8px;
-                  height: 8px;
-                  background-color: #10b981;
-                  border-radius: 50%;
-                  margin-right: 1rem;
-                "
-              ></div>
-              Drive mass adoption of human verification in gaming
-            </li>
-          </ul>
-        </div>
-      </div>
+        }
 
-      <div class="grid-2">
+        .ask-item {
+            border-left: 4px solid #10b981;
+        }
+
+        .ask-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #10b981;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .carousel-items {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            display: none;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+
+        .benefit-item {
+            background-color: #333;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #2563eb;
+        }
+
+        .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #2563eb;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .carousel-button {
+            background-color: #2a2a2a;
+            border: 1px solid #3a3a3a;
+            color: #10b981;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .carousel-button:hover {
+            background-color: #3a3a3a;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #3a3a3a;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: #10b981;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            border: 1px solid #3a3a3a;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: inline-flex;
+            gap: 2rem;
+            color: #9ca3af;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #10b981;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item a:hover {
+            color: #059669;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 0 10px;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .status-badge {
+                margin-left: 0;
+                align-self: flex-start;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+        }
+
+        /* List Styles */
+        ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="project-title">Anima PlayTrade</h1>
+            <div class="project-subtitle">AI-Powered NFT Trading Assistant</div>
+        </header>
+
+        <!-- Hero Image -->
+        <img
+            src="https://raw.githubusercontent.com/boorich/NFT_Inventory/refs/heads/main/public/images/trading_agent.webp"
+            alt="Digital Curator"
+            class="hero-image"
+        />
+
+        <!-- Current Status -->
         <div class="card">
-          <div class="card-title">Strategic Partnerships</div>
-          <div class="partner">
-            <div class="partner-name">ChainSafe</div>
-            <div class="partner-role">Blockchain Infrastructure</div>
-          </div>
-          <div class="partner pending">
-            <div class="partner-name">Ritual</div>
-            <div class="partner-role">AI Development (Pending)</div>
-          </div>
-          <div class="partner">
-            <div class="partner-name">WorldCoin</div>
-            <div class="partner-role">Identity Verification</div>
-          </div>
-          <div class="partner pending">
-            <div class="partner-name">Helika</div>
-            <div class="partner-role">Data Analytics (Pending)</div>
-          </div>
+            <div class="card-title">Current Status</div>
+            <div class="status-grid">
+                <a
+                    href="https://raw.githubusercontent.com/boorich/anima_playtrade/main/UIM_Demo.mp4"
+                    class="status-item clickable"
+                    target="_blank"
+                >
+                    <div class="status-icon"></div>
+                    <span>Mobile App Video</span>
+                </a>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span>€12,000 Grant Secured</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span>NFT Tracking Live</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-icon"></div>
+                    <span>WorldID Integrated</span>
+                </div>
+            </div>
         </div>
 
+        <!-- Partnerships and Timeline -->
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-title">Strategic Partnerships</div>
+                <div class="partner">
+                    <div class="partner-name">ChainSafe</div>
+                    <div class="partner-role">Blockchain Infrastructure</div>
+                </div>
+                <div class="partner pending">
+                    <div class="partner-name">Ritual</div>
+                    <div class="partner-role">AI Development (Pending)</div>
+                </div>
+                <div class="partner">
+                    <div class="partner-name">WorldCoin</div>
+                    <div class="partner-role">Identity Verification</div>
+                </div>
+                <div class="partner pending">
+                    <div class="partner-name">Helika</div>
+                    <div class="partner-role">Data Analytics (Pending)</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Development Timeline</div>
+                <div class="timeline-item">
+                    <div>
+                        <div>MVP Development</div>
+                        <div class="timeline-desc">
+                            Deliver a functional, polished MVP that acts as a personal NFT
+                            vault with basic inventory management
+                        </div>
+                    </div>
+                    <span class="status-badge status-inprogress">In Progress</span>
+                </div>
+                <div class="timeline-item">
+                    <div>
+                        <div>Core Features</div>
+                        <div class="timeline-desc">
+                            Enhance user engagement, add personalization features, and
+                            prepare the project for open-source contributions
+                        </div>
+                    </div>
+                    <span class="status-badge status-funded">Funded</span>
+                </div>
+                <div class="timeline-item">
+                    <div>
+                        <div>Analytics Integration</div>
+                        <div class="timeline-desc">
+                            Integration of advanced analytics and AI-powered trading
+                            recommendations
+                        </div>
+                    </div>
+                    <span class="status-badge status-planned">Planned</span>
+                </div>
+                <div class="timeline-item">
+                    <div>
+                        <div>Market Expansion</div>
+                        <div class="timeline-desc">
+                            Scale the platform and expand to additional NFT marketplaces
+                        </div>
+                    </div>
+                    <span class="status-badge status-planned">Planned</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Broader Context -->
         <div class="card">
-          <div class="card-title">Development Timeline</div>
-          <div class="timeline-item">
-            <div>
-              <div>MVP Development</div>
-              <div class="timeline-desc">
-                Deliver a functional, polished MVP that acts as a personal NFT
-                vault with basic inventory management
-              </div>
-            </div>
-            <span class="status-badge status-inprogress">In Progress</span>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div>Core Features</div>
-              <div class="timeline-desc">
-                Enhance user engagement, add personalization features, and
-                prepare the project for open-source contributions
-              </div>
-            </div>
-            <span class="status-badge status-funded">Funded</span>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div>Analytics Integration</div>
-              <div class="timeline-desc">
-                Integration of advanced analytics and AI-powered trading
-                recommendations
-              </div>
-            </div>
-            <span class="status-badge status-planned">Planned</span>
-          </div>
-          <div class="timeline-item">
-            <div>
-              <div>Market Expansion</div>
-              <div class="timeline-desc">
-                Scale the platform and expand to additional NFT marketplaces
-              </div>
-            </div>
-            <span class="status-badge status-planned">Planned</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Partnership Request</div>
-        <div class="ask-item">
-          <div class="ask-title">Our Ask</div>
-          To realize the Digital Curator's full potential, we are looking for:
-          <ul style="margin-top: 0.5rem; color: #e5e5e5">
-            <li>Access to your data analytics platform for model inference</li>
-            <li>
-              Alternative: Access to a pre-trained or fine-tuned model if
-              available
-            </li>
-            <li>
-              Alternative: Funding for compute resources to train/fine-tune our
-              own model
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Helika's Benefits</div>
-        <div class="carousel-container">
-          <div class="carousel-items">
-            <div class="carousel-item active">
-              <div class="benefit-item">
-                <div class="benefit-title">Data & Market Insights</div>
-                <ul style="margin-top: 0.5rem; color: #e5e5e5">
-                  <li>
-                    Access to verified human trading patterns in NFT markets
-                  </li>
-                  <li>Real user behavior data from WorldID-verified traders</li>
-                  <li>
-                    Insight into gaming asset valuation across different games
-                  </li>
+            <div class="card-title">Broader Context</div>
+            <div class="context-item">
+                <div style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <strong>The Bigger Picture</strong>
+                </div>
+                <div style="color: #9ca3af; margin-bottom: 1rem;">
+                    Anima is a key component of UIM (Universal Item Manager), the
+                    ultimate cross-game NFT command center. This isn't just about
+                    managing NFTs - it's about creating the foundation for
+                    <span style="color: #10b981">true cross-game asset ownership</span>.
+                </div>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; margin-right: 1rem;"></div>
+                        Make cross-game assets accessible to mainstream gamers
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; margin-right: 1rem;"></div>
+                        Prevent bot-driven manipulation of gaming economies
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; margin-right: 1rem;"></div>
+                        Enable legitimate cross-game trading
+                    </li>
+                    <li style="display: flex; align-items: center;">
+                        <div style="width: 8px; height: 8px; background-color: #10b981; border-radius: 50%; margin-right: 1rem;"></div>
+                        Drive mass adoption of human verification in gaming
+                    </li>
                 </ul>
-              </div>
             </div>
-            <div class="carousel-item">
-              <div class="benefit-item">
-                <div class="benefit-title">Strategic Position</div>
-                <ul style="margin-top: 0.5rem; color: #e5e5e5">
-                  <li>
-                    Early access to a growing gaming NFT analytics platform
-                  </li>
-                  <li>Integration opportunities with gaming studios</li>
-                  <li>
-                    Position in the emerging AI-powered trading assistant market
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="benefit-item">
-                <div class="benefit-title">Technology Validation</div>
-                <ul style="margin-top: 0.5rem; color: #e5e5e5">
-                  <li>Real-world validation of AI models in NFT trading</li>
-                  <li>
-                    Proof of concept for AI-powered digital asset management
-                  </li>
-                  <li>Showcase for blockchain data analytics applications</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-buttons">
-            <button class="carousel-button" onclick="prevSlide()">
-              Previous
-            </button>
-            <button class="carousel-button" onclick="nextSlide()">Next</button>
-          </div>
-          <div class="carousel-dots">
-            <div class="carousel-dot active" onclick="showSlide(0)"></div>
-            <div class="carousel-dot" onclick="showSlide(1)"></div>
-            <div class="carousel-dot" onclick="showSlide(2)"></div>
-          </div>
         </div>
-      </div>
 
-      <footer class="footer">
-        <div class="contact-info">
-          <div class="contact-item">
-            <span>Email:</span>
-            <a href="mailto:martin@chainsafe.io">martin@chainsafe.io</a>
-          </div>
-          <div class="contact-item">
-            <span>Telegram:</span>
-            <a href="https://t.me/cmdmcsellerie">@cmdmcsellerie</a>
-          </div>
+        <!-- Partnership Request -->
+        <div class="card">
+            <div class="card-title">Partnership Request</div>
+            <div class="ask-item">
+                <div class="ask-title">Our Ask</div>
+                To realize the Digital Curator's full potential, we are looking for:
+                <ul style="margin-top: 0.5rem; color: #e5e5e5;">
+                    <li>Access to your data analytics platform for model inference</li>
+                    <li>Alternative: Access to a pre-trained or fine-tuned model if available</li>
+                    <li>Alternative: Funding for compute resources to train/fine-tune our own model</li>
+                </ul>
+            </div>
         </div>
-      </footer>
+
+        <!-- Helika's Benefits -->
+        <div class="card">
+            <div class="card-title">Helika's Benefits</div>
+            <div class="carousel-container">
+                <div class="carousel-items">
+                    <div class="carousel-item active">
+                        <div class="benefit-item">
+                            <div class="benefit-title">Data & Market Insights</div>
+                            <ul style="margin-top: 0.5rem; color: #e5e5e5;">
+                                <li>Access to verified human trading patterns in NFT markets</li>
+                                <li>Real user behavior data from WorldID-verified traders</li>
+                                <li>Insight into gaming asset valuation across different games</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="benefit-item">
+                            <div class="benefit-title">Strategic Position</div>
+                            <ul style="margin-top: 0.5rem; color: #e5e5e5;">
+                                <li>Early access to a growing gaming NFT analytics platform</li>
+                                <li>Integration opportunities with gaming studios</li>
+                                <li>Position in the emerging AI-powered trading assistant market</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="benefit-item">
+                            <div class="benefit-title">Technology Validation</div>
+                            <ul style="margin-top: 0.5rem; color: #e5e5e5;">
+                                <li>Real-world validation of AI models in NFT trading</li>
+                                <li>Proof of concept for AI-powered digital asset management</li>
+                                <li>Showcase for blockchain data analytics applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-buttons">
+                    <button class="carousel-button" onclick="prevSlide()">Previous</button>
+                    <button class="carousel-button" onclick="nextSlide()">Next</button>
+                </div>
+                <div class="carousel-dots">
+                    <div class="carousel-dot active" onclick="showSlide(0)"></div>
+                    <div class="carousel-dot" onclick="showSlide(1)"></div>
+                    <div class="carousel-dot" onclick="showSlide(2)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>Email:</span>
+                    <a href="mailto:martin@chainsafe.io">martin@chainsafe.io</a>
+                </div>
+                <div class="contact-item">
+                    <span>Telegram:</span>
+                    <a href="https://t.me/cmdmcsellerie">@cmdmcsellerie</a>
+                </div>
+            </div>
+        </footer>
     </div>
 
+    <!-- Carousel JavaScript -->
     <script>
-      let currentSlide = 0;
-      const slides = document.querySelectorAll(".carousel-item");
-      const dots = document.querySelectorAll(".carousel-dot");
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.carousel-dot');
 
-      function showSlide(n) {
-        slides.forEach((slide) => slide.classList.remove("active"));
-        dots.forEach((dot) => dot.classList.remove("active"));
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = n;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
 
-        currentSlide = n;
-        if (currentSlide >= slides.length) currentSlide = 0;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
 
-        slides[currentSlide].classList.add("active");
-        dots[currentSlide].classList.add("active");
-      }
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
 
-      function nextSlide() {
-        showSlide(currentSlide + 1);
-      }
-
-      function prevSlide() {
-        showSlide(currentSlide - 1);
-      }
-
-      // Auto-advance slides every 5 seconds
-      setInterval(nextSlide, 5000);
+        // Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
     </script>
-  </body>
+</body>
 </html>
