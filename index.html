@@ -199,6 +199,18 @@
         display: inline-flex;
         gap: 2rem;
         color: #9ca3af;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @media (max-width: 640px) {
+        .contact-info {
+            flex-direction: column; /* Stack items vertically on small screens */
+            gap: 1rem;            /* Reduce gap on small screens */
+        }
+
+        .contact-item {
+            justify-content: center; /* Center items on small screens */
+        }
       }
 
       .contact-item {
@@ -303,7 +315,7 @@
         <div class="card-title">Current Status</div>
         <div class="status-grid">
           <a
-            href="file:///Users/martinmaurer/Projects/pitch-dashboard/UIM_Demo.mp4"
+            href="https://github.com/boorich/anima_playtrade/blob/main/UIM_Demo.mp4"
             class="status-item clickable"
             target="_blank"
           >
